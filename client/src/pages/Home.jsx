@@ -140,7 +140,14 @@ const Container = styled.div`
 const Header = styled.header`
   background-color: ${props => props.theme.bgLight};
   border-bottom: 1px solid ${props => props.theme.border};
-  padding: 1rem 2rem;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  
+  @media (max-width: 768px) {
+    padding: 0.75rem;
+  }
 `;
 
 const HeaderContent = styled.div`
@@ -149,11 +156,6 @@ const HeaderContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 1rem;
-  }
 `;
 
 const ButtonGroup = styled.div`
@@ -162,8 +164,7 @@ const ButtonGroup = styled.div`
   align-items: center;
 
   @media (max-width: 768px) {
-    width: 100%;
-    justify-content: center;
+    gap: 0.5rem;
   }
 `;
 
@@ -173,6 +174,10 @@ const Logo = styled.h1`
   color: white;
   cursor: pointer;
   text-decoration: none;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const Button = styled.button`
@@ -194,6 +199,15 @@ const Button = styled.button`
 const CreateButton = styled(Button)`
   background: #8b5cf6;
   color: white;
+  padding: 0.5rem 1rem;
+
+  @media (max-width: 768px) {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+    svg {
+      font-size: 1rem;
+    }
+  }
 
   &:hover {
     background: #7c3aed;
@@ -203,12 +217,20 @@ const CreateButton = styled(Button)`
 
 const LogoutButton = styled(Button)`
   background: transparent;
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: ${props => props.theme.text_primary};
+  border: 1px solid ${props => props.theme.border};
+  padding: 0.5rem 1rem;
+
+  @media (max-width: 768px) {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+    svg {
+      font-size: 1rem;
+    }
+  }
 
   &:hover {
     background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
   }
 `;
 

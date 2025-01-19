@@ -63,12 +63,12 @@ const LandingPage = () => {
       <FeaturedSection>
         <SectionTitle>Featured Generations</SectionTitle>
         <ImageGrid>
-            <ImageCard to={"/login"}><Image src={stairImage} alt="AI Generated"/></ImageCard>
+            <ImageCard to={"/login"}><Image src={cyberImage} alt="AI Generated"/></ImageCard>
             <ImageCard to={"/login"}><Image src={tokyoImage} alt="AI Generated"/></ImageCard>
             <ImageCard to={"/login"}><Image src={treeImage} alt="AI Generated"/></ImageCard>
-            <ImageCard to={"/login"}><Image src={cyberImage} alt="AI Generated"/></ImageCard>
             <ImageCard to={"/login"}><Image src={robotImage} alt="AI Generated"/></ImageCard>
             <ImageCard to={"/login"}><Image src={wireImage} alt="AI Generated"/></ImageCard>
+            <ImageCard to={"/login"}><Image src={stairImage} alt="AI Generated"/></ImageCard>
         </ImageGrid>
       </FeaturedSection>
     </Container>
@@ -99,13 +99,16 @@ const Nav = styled.nav`
   z-index: 10;
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 1.5rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-bottom: 0.5rem;
+  padding: 1.5rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 0.75rem;
+  }
 `;
 
 const Logo = styled.h1`
@@ -117,6 +120,13 @@ const Logo = styled.h1`
 const NavButtons = styled.div`
   display: flex;
   gap: 1rem;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: space-around;
+    gap: 0.5rem;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -129,6 +139,16 @@ const Button = styled.button`
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    flex: 1;
+    max-width: 120px;
+  }
 `;
 
 const OutlineButton = styled(Button)`
@@ -222,35 +242,39 @@ const SectionTitle = styled.h3`
 
 const ImageGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
+  padding: 1.5rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0.75rem;
+  }
 `;
 
 const ImageCard = styled(Link)`
-  border-radius: 0.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 300px; /* Enforce square shape */
-  height: 300px; /* Enforce square shape */
-  margin: 0.2rem;
+  position: relative;
+  border-radius: 0.75rem;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
+  cursor: pointer;
+  aspect-ratio: 1;
+  transition: transform 0.2s;
+  
   &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
   }
-
-  img {
-    border-radius: 0.5rem;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  
+  @media (max-width: 480px) {
+    aspect-ratio: 16/9;
   }
 `;
-
-
 
 const Image = styled.img`
   width: 100%;
