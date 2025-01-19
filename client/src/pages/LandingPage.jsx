@@ -123,8 +123,6 @@ const Nav = styled.nav`
   align-items: center;
 
   @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 1rem;
     padding: 1rem 0.75rem;
   }
 `;
@@ -141,8 +139,6 @@ const NavButtons = styled.div`
   align-items: center;
 
   @media (max-width: 768px) {
-    width: 100%;
-    justify-content: space-around;
     gap: 0.5rem;
   }
 `;
@@ -162,10 +158,8 @@ const Button = styled.button`
   justify-content: center;
 
   @media (max-width: 768px) {
-    padding: 0.5rem;
-    font-size: 0.9rem;
-    flex: 1;
-    max-width: 120px;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
   }
 `;
 

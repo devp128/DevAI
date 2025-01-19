@@ -106,11 +106,6 @@ const Container = styled.div`
   padding: 1rem;
   position: relative;
   background-color: ${props => props.theme.black};
-  background-image: radial-gradient(
-    circle at center,
-    ${props => props.theme.bgLight} 0%,
-    ${props => props.theme.black} 100%
-  );
 `;
 
 const LogoLink = styled(Link)`
@@ -137,18 +132,19 @@ const Logo = styled.h1`
 const FormCard = styled.div`
   width: 100%;
   max-width: 28rem;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border-radius: 0.75rem;
+  background: ${props => props.theme.bgLight};
+  border-radius: 1rem;
   padding: 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   transform: translateY(0);
   transition: all 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
   }
 `;
 
