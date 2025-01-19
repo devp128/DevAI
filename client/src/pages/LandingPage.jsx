@@ -5,6 +5,9 @@ import styled from 'styled-components';
 import stairImage from '../assets/img/stair.jpg';
 import robotImage from '../assets/img/robot.jpg';
 import wireImage from '../assets/img/wire.jpg';
+import treeImage from '../assets/img/tree.jpg';
+import cyberImage from '../assets/img/cyberpunk.jpg';
+import tokyoImage from '../assets/img/tokyo.jpg';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -61,6 +64,9 @@ const LandingPage = () => {
         <SectionTitle>Featured Generations</SectionTitle>
         <ImageGrid>
             <ImageCard to={"/login"}><Image src={stairImage} alt="AI Generated"/></ImageCard>
+            <ImageCard to={"/login"}><Image src={tokyoImage} alt="AI Generated"/></ImageCard>
+            <ImageCard to={"/login"}><Image src={treeImage} alt="AI Generated"/></ImageCard>
+            <ImageCard to={"/login"}><Image src={cyberImage} alt="AI Generated"/></ImageCard>
             <ImageCard to={"/login"}><Image src={robotImage} alt="AI Generated"/></ImageCard>
             <ImageCard to={"/login"}><Image src={wireImage} alt="AI Generated"/></ImageCard>
         </ImageGrid>
