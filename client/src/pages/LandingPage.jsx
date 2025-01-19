@@ -2,12 +2,6 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import stairImage from '../assets/img/stair.jpg';
-import robotImage from '../assets/img/robot.jpg';
-import wireImage from '../assets/img/wire.jpg';
-import treeImage from '../assets/img/tree.jpg';
-import cyberImage from '../assets/img/cyberpunk.jpg';
-import tokyoImage from '../assets/img/tokyo.jpg';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -63,12 +57,36 @@ const LandingPage = () => {
       <FeaturedSection>
         <SectionTitle>Featured Generations</SectionTitle>
         <ImageGrid>
-            <ImageCard to={"/login"}><Image src={cyberImage} alt="AI Generated"/></ImageCard>
-            <ImageCard to={"/login"}><Image src={tokyoImage} alt="AI Generated"/></ImageCard>
-            <ImageCard to={"/login"}><Image src={treeImage} alt="AI Generated"/></ImageCard>
-            <ImageCard to={"/login"}><Image src={robotImage} alt="AI Generated"/></ImageCard>
-            <ImageCard to={"/login"}><Image src={wireImage} alt="AI Generated"/></ImageCard>
-            <ImageCard to={"/login"}><Image src={stairImage} alt="AI Generated"/></ImageCard>
+          <ImageCard to="/login">
+            <ImageWrapper>
+              <Image src={'https://res.cloudinary.com/dgw8mpgzg/image/upload/v1737299120/fefaovvemofgrl5favcz.jpg'} alt="AI Generated" loading="lazy" />
+            </ImageWrapper>
+          </ImageCard>
+          <ImageCard to="/login">
+            <ImageWrapper>
+              <Image src={'https://res.cloudinary.com/dgw8mpgzg/image/upload/v1737299120/fvjalbaml9njitohp15p.jpg'} alt="AI Generated" loading="lazy" />
+            </ImageWrapper>
+          </ImageCard>
+          <ImageCard to="/login">
+            <ImageWrapper>
+              <Image src={'https://res.cloudinary.com/dgw8mpgzg/image/upload/v1737299123/rv4tbz9hj3weop4m7esg.jpg'} alt="AI Generated" loading="lazy" />
+            </ImageWrapper>
+          </ImageCard>
+          <ImageCard to="/login">
+            <ImageWrapper>
+              <Image src={'https://res.cloudinary.com/dgw8mpgzg/image/upload/v1737220247/spt298kf2fkrk3rrhw7e.jpg'} alt="AI Generated" loading="lazy" />
+            </ImageWrapper>
+          </ImageCard>
+          <ImageCard to="/login">
+            <ImageWrapper>
+              <Image src={'https://res.cloudinary.com/dgw8mpgzg/image/upload/v1737220285/bhztoobq2h3zx6bdk14q.jpg'} alt="AI Generated" loading="lazy" />
+            </ImageWrapper>
+          </ImageCard>
+          <ImageCard to="/login">
+            <ImageWrapper>
+              <Image src={'https://res.cloudinary.com/dgw8mpgzg/image/upload/v1737220255/cicdesjnv6hhpxz4gvjh.jpg'} alt="AI Generated" loading="lazy" />
+            </ImageWrapper>
+          </ImageCard>
         </ImageGrid>
       </FeaturedSection>
     </Container>
@@ -261,7 +279,7 @@ const ImageGrid = styled.div`
 
 const ImageCard = styled(Link)`
   position: relative;
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   overflow: hidden;
   cursor: pointer;
   aspect-ratio: 1;
@@ -276,11 +294,22 @@ const ImageCard = styled(Link)`
   }
 `;
 
+const ImageWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: ${props => props.theme.bgLight};
+  border-radius: 1rem;
+  overflow: hidden;
+`;
+
 const Image = styled.img`
   width: 100%;
-  height: 16rem;
+  height: 100%;
   object-fit: cover;
+  border-radius: 1rem;
   transition: transform 0.3s ease;
+  background: ${props => props.theme.bgLight};
   &:hover {
     transform: scale(1.05);
   }
