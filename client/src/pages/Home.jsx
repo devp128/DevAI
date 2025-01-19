@@ -305,12 +305,6 @@ const Card = styled.div`
   background: ${props => props.theme.card};
   transition: transform 0.3s ease;
 
-  @media (max-width: 768px) {
-    &:hover {
-      transform: none; /* Disable hover animation on mobile */
-    }
-  }
-
   &:hover {
     transform: translateY(-5px);
     
@@ -355,7 +349,7 @@ const Overlay = styled.div`
   align-items: flex-end;
 
   @media (max-width: 768px) {
-    opacity: 1; /* Always show overlay on mobile */
+    opacity: 0;
     padding: 0.75rem;
   }
 `;
