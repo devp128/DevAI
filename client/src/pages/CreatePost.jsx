@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { AiOutlineHome, AiOutlineLogout, AiOutlineRocket, AiOutlineCloudUpload } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineLogout, AiOutlineRocket, AiOutlineCloudUpload, AiOutlineDownload } from 'react-icons/ai';
+import { FiDownload } from 'react-icons/fi';
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -17,41 +18,6 @@ const CreatePost = () => {
   const handleLogout = () => {
     logout();
     navigate('/', { replace: true });
-  };
-
-  const handlePost = async () => {
-    if (!post.photo) {
-      setError('Please generate an image first');
-      return;
-    }
-    setLoading(true);
-    try {
-      const response = await fetch('/api/posts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify({
-          prompt: post.prompt,
-          photo: post.photo,
-          userName: user.username
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to create post');
-      }
-
-      const data = await response.json();
-      navigate('/home');
-    } catch (error) {
-      console.error('Error creating post:', error);
-      setError(error.message || 'Failed to create post');
-    } finally {
-      setLoading(false);
-    }
   };
 
   const handleGenerate = async () => {
@@ -87,6 +53,21 @@ const CreatePost = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleDownload = () => {
+    if (!post.photo) {
+      setError('Please generate an image first');
+      return;
+    }
+    
+    // Create a temporary anchor element
+    const link = document.createElement('a');
+    link.href = post.photo;
+    link.download = `devai-creation-${Date.now()}.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -134,10 +115,10 @@ const CreatePost = () => {
                 <AiOutlineRocket /> {loading ? 'Generating...' : 'Generate'}
               </ActionButton>
               <ActionButton 
-                onClick={handlePost}
+                onClick={handleDownload}
                 disabled={loading || !post.photo}
               >
-                <AiOutlineCloudUpload /> Post
+                <FiDownload /> Download
               </ActionButton>
             </ButtonContainer>
           </Form>

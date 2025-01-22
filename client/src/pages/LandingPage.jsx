@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 
+
+
 const LandingPage = () => {
   const navigate = useNavigate();
 
@@ -277,11 +279,21 @@ const ImageCard = styled(Link)`
   overflow: hidden;
   cursor: pointer;
   aspect-ratio: 1;
-  transition: transform 0.2s;
-  
+  transition: transform 0.3s ease;
+
   &:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
+    
+    img {
+      transform: scale(1.1);
+    }
+    
+    div {
+      opacity: 1;
+    }
   }
+}
+
   
   @media (max-width: 480px) {
     aspect-ratio: 16/9;
