@@ -16,7 +16,9 @@ const port = process.env.PORT || 8000;
 const _dirname= path.resolve();
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin: 'https://<VERCEL_DOMAIN>'
+}));
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({extended: true}));
 
@@ -24,12 +26,6 @@ app.use(express.urlencoded({extended: true}));
 app.use('/api/auth', AuthRouter);
 app.use('/api/posts', protect, PostRouter);
 app.use('/api/generateImage', GenerateImageRouter);  
-app.use(express.static(path.join(_dirname, 'client/dist')));
-
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(_dirname, 'client/dist', 'index.html'));
-
-})
 
 // Error handling middleware
 app.use((err, req, res, next) => {
