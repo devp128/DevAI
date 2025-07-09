@@ -5,6 +5,8 @@ import { useAuth } from '../context/AuthContext';
 import { AiOutlineHome, AiOutlineLogout, AiOutlineRocket, AiOutlineCloudUpload, AiOutlineDownload } from 'react-icons/ai';
 import { FiDownload } from 'react-icons/fi';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const CreatePost = () => {
   const navigate = useNavigate();
   const { logout, user } = useAuth();
@@ -28,7 +30,7 @@ const CreatePost = () => {
     setError('');
     setLoading(true);
     try {
-      const response = await fetch('/api/generateImage/generate', {
+      const response = await fetch(`${API_URL}/generateImage/generate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

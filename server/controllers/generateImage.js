@@ -14,30 +14,29 @@ const generateImage = async (req, res, next) => {
 
     console.log('Generating image for prompt:', prompt);
 
-    // Query the Hugging Face model
+    // Query the Hugging Face model using the new API
     const response = await axios({
       method: 'post',
-      url: "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0",
+      url: "https://router.huggingface.co/nebius/v1/images/generations",
       headers: {
-        'Authorization': `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
+        'Authorization': `Bearer ${process.env.HF_TOKEN}`,
         'Content-Type': 'application/json',
       },
       data: {
-        inputs: prompt,
-        options: {
-          wait_for_model: true
-        }
+        response_format: "b64_json",
+        prompt: prompt,
+        model: "stability-ai/sdxl"
       },
-      responseType: 'arraybuffer'
+      responseType: 'json' // Changed from 'arraybuffer' to 'json' since we expect JSON response
     });
 
-    if (!response.data) {
-      console.error('No data received from Hugging Face');
+    if (!response.data || !response.data.data || !response.data.data[0] || !response.data.data[0].b64_json) {
+      console.error('No valid image data received from Hugging Face');
       return next(createError(500, "Failed to generate image. No output received."));
     }
 
-    // Convert binary data to base64
-    const base64Image = `data:image/jpeg;base64,${Buffer.from(response.data).toString('base64')}`;
+    // Extract base64 image from JSON response
+    const base64Image = `data:image/png;base64,${response.data.data[0].b64_json}`;
 
     console.log('Successfully generated image');
 
@@ -54,8 +53,8 @@ const generateImage = async (req, res, next) => {
       console.error("Response status:", error.response.status);
       console.error("Response headers:", error.response.headers);
       
-      // If we got a text response instead of an image, log it
-      if (error.response.headers['content-type']?.includes('text')) {
+      // If we got a text response, log it
+      if (error.response.headers['content-type']?.includes('text') || error.response.headers['content-type']?.includes('json')) {
         const textError = error.response.data.toString();
         console.error("Response error text:", textError);
         return next(createError(500, `API Error: ${textError}`));

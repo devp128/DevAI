@@ -5,6 +5,8 @@ import { useAuth } from '../context/AuthContext';
 import { FiDownload } from 'react-icons/fi';
 import { AiOutlinePlus, AiOutlineLogout } from 'react-icons/ai';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Home = () => {
   const navigate = useNavigate();
   const { logout } = useAuth();
@@ -19,7 +21,7 @@ const Home = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch('/api/posts', {
+      const response = await fetch(`${API_URL}/posts`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }

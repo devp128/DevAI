@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +20,7 @@ const Register = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('/api/auth/register', {
+      const response = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
