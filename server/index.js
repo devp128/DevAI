@@ -17,7 +17,9 @@ const _dirname= path.resolve();
 
 // Middlewares
 app.use(cors({
-  origin:  'http://localhost:5173'
+  //origin:  'http://localhost:5173'
+  origin:  'https://dev-ai-y42s.vercel.app'
+
 
 }));
 app.use(express.json({limit: '50mb'}));
