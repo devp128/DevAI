@@ -27,7 +27,7 @@ const generateImage = async (req, res, next) => {
         prompt: prompt,
         model: "stability-ai/sdxl"
       },
-      responseType: 'json' // Changed from 'arraybuffer' to 'json' since we expect JSON response
+      responseType: 'json'
     });
 
     if (!response.data || !response.data.data || !response.data.data[0] || !response.data.data[0].b64_json) {

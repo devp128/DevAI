@@ -7,7 +7,7 @@ import GenerateImageRouter from './routes/generateimage.route.js';
 import AuthRouter from './routes/auth.route.js';
 import { protect } from './middleware/auth.middleware.js';
 import path from 'path';
-
+import axios from 'axios';
 dotenv.config();
 
 const app = express();
@@ -15,10 +15,20 @@ const port = process.env.PORT || 8000;
 
 const _dirname= path.resolve();
 
+
+// Render-Alive
+if (process.env.KEEP_ALIVE_URL) {
+  setInterval(() => {
+    axios.get(process.env.KEEP_ALIVE_URL)
+      .then(() => console.log('Website reloaded'))
+      .catch(error => console.error(`Keep-alive error: ${error.message}`));
+  }, 300000); // 5 minutes
+}
+
 // Middlewares
 app.use(cors({
-  //origin:  'http://localhost:5173'
-  origin:  'https://dev-ai-y42s.vercel.app'
+  origin:  'http://localhost:5173'
+  //origin:  'https://dev-ai-y42s.vercel.app'
 
 
 }));

@@ -10,7 +10,7 @@ export const register = async (req, res, next) => {
     try {
         const { username, email, password } = req.body;
 
-        // Validate input
+        // Validate for input
         if (!username || !email || !password) {
             return res.status(400).json({
                 success: false,
@@ -18,7 +18,7 @@ export const register = async (req, res, next) => {
             });
         }
 
-        // Validate email format
+        // Validate for email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             return res.status(400).json({
@@ -27,7 +27,7 @@ export const register = async (req, res, next) => {
             });
         }
 
-        // Validate password length
+        // Validate for password 
         if (password.length < 6) {
             return res.status(400).json({
                 success: false,

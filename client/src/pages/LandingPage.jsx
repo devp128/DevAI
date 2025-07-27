@@ -8,6 +8,7 @@ import styled from 'styled-components';
 const LandingPage = () => {
   const navigate = useNavigate();
 
+  //search bar enter navigate to login page 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       navigate('/login');

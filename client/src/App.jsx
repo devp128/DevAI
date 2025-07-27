@@ -19,7 +19,7 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
-// Public Route Component (redirects to home if already authenticated)
+// Public Route Component if already authenticated
 const PublicRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
   
