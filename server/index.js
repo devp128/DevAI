@@ -27,8 +27,8 @@ if (process.env.KEEP_ALIVE_URL) {
 
 // Middlewares
 app.use(cors({
-  origin:  'http://localhost:5173'
-  //origin:  'https://dev-ai-y42s.vercel.app'
+  //origin:  'http://localhost:5173'
+  origin:  'https://dev-ai-y42s.vercel.app'
 
 
 }));
